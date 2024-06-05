@@ -11,10 +11,13 @@ opt.parse!(ARGV)
 input_date = ARGV
 input_date.map!(&:to_i)
 
+this_month = Date.today.month
 this_year = Date.today.year
 
 
-if input_date.size == 1
+if input_date.size == 0
+    input_date << this_month << this_year
+elsif input_date.size == 1
     input_date << this_year
 end
 
