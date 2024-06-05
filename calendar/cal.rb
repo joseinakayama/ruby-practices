@@ -7,26 +7,28 @@ opt = OptionParser.new
 opt.on('-m') 
 opt.on('-y')
 
-opt.parse!(ARGV)
-input_date = ARGV
-input_date.map!(&:to_i)
+input_date = ARGV.getopts('m:', 'y:')
+
+input_date_month = input_date['m'].to_i
+input_date_year = input_date['y'].to_i
 
 this_month = Date.today.month
 this_year = Date.today.year
 
 
-if input_date.size == 0
-    input_date << this_month << this_year
-elsif input_date.size == 1
-    input_date << this_year
+if input_date_month == 0 && input_date_year == 0
+    input_date_month = this_month
+    input_date_year = this_year
+elsif input_date_year == 0
+    input_date_year = this_year
 end
 
 
-first_day = Date.new(input_date[1], input_date[0])
-last_day = Date.new(input_date[1], input_date[0], -1)
+first_day = Date.new(input_date_year, input_date_month)
+last_day = Date.new(input_date_year, input_date_month, -1)
 space = "   "
 
-puts "#{space * 2} #{input_date[0]}月 #{input_date[1]}"
+puts "#{space * 2} #{input_date_month}月 #{input_date_year}"
 puts "日 月 火 水 木 金 土"
 case
 when first_day.cwday == 1
