@@ -31,32 +31,15 @@ puts "日 月 火 水 木 金 土"
         print space * i
     end
 end
-# case
-# when first_day.cwday == 1
-#     print space
-# when first_day.cwday == 2
-#     print space * 2
-# when first_day.cwday == 3
-#     print space * 3
-# when first_day.cwday == 4
-#     print space * 4
-# when first_day.cwday == 5
-#     print space * 5
-# when first_day.cwday == 6
-#     print space * 6
-# end
+
 (first_day..last_day).each {|d|
-    if d.saturday?
-        if d.day <= 9
-            puts " #{d.day}"
-        else
-            puts "#{d.day}"
-        end
+    if d.saturday? && d.day <= 9
+        print " #{d.day}\n"
+    elsif d.saturday?
+        print "#{d.day}\n"
+    elsif d.day <= 9
+        print " #{d.day} "
     else
-        if d.day <= 9
-            print " #{d.day} "
-        else
-            print "#{d.day} "
-        end
+        print "#{d.day} "
     end
 }
