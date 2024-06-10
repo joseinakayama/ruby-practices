@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-score = 'X,0,0,X,0,0,X,0,0,X,0,0,X,0,0'
+score = ARGV[0]
 scores = score.split(',')
 shots = []
 scores.each do |s|
@@ -21,7 +21,7 @@ point = 0
 frames.each_with_index do |frame, i|
   if i < 9
     if frame.first == 10
-      point = if frames[i + 1].first == 10
+      point += if frames[i + 1].first == 10
                 frame.sum + frames[i + 1].first + frames[i + 2].first
               else
                 frame.sum + frames[i + 1].sum
