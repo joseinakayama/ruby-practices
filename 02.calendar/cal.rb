@@ -26,11 +26,7 @@ space = '   '
 puts "#{space * 2} #{month}月 #{year}"
 puts '日 月 火 水 木 金 土'
 
-7.times do |i|
-  if first_day.cwday == i
-    print space * i
-  end
-end
+print space * first_day.cwday
 
 (first_day..last_day).each {|d|
   printf("%2d ", "#{d.day}")
