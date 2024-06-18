@@ -18,14 +18,12 @@ point = 0
 frames.each_with_index do |frame, i|
   point += frame.sum
   next if i >= 9 || frame.sum != 10
-  point += if frame.first == 10
-            if frames[i + 1].first == 10
-              frames[i + 1].first + frames[i + 2].first
+  point += frames[i + 1].first
+  next if frame.first != 10
+  point += if frames[i + 1].first == 10
+              frames[i + 2].first
             else
-              frames[i + 1].sum
+              frames[i + 1].last
             end
-          else
-            frames[i + 1][0]
-          end
 end
 puts point
